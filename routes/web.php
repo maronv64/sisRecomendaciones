@@ -1,0 +1,200 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/probando', function () {
+    return view('probando');
+});
+
+Route::resource('/dispositivos','DispositivosController');
+
+
+Route::group(['middleware' => 'auth'], function () {
+    //    Route::get('/link1', function ()    {
+//        // Uses Auth Middleware
+//    });
+
+    //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
+    #adminlte_routes
+});
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+Route::resource('/Estrategia', 'Estrategias');
+Route::get('/Estrategia', 'Estrategias@index');
+Route::get('/preparactualizarEstrategia/{id}','Estrategias@preparactualizarEstrategia');
+Route::get('/FiltrarEstrategias/{id}','Estrategias@FiltrarEstrategias');
+///////////////////////////////////////////////////////////////
+
+//Ruta de tipo recomendaciones
+Route::resource('/TipoInforme','TipoInformes');
+Route::get('/TipoInforme', 'TipoInformes@index');
+Route::get('/TipoInformeCargar','TipoInformes@cargarTInforme');
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Route::resource('/Entregable','Entregables');
+Route::get('/Entregable','Entregables@index');
+Route::get('/preparactualizarentregables/{id}','Entregables@preparactualizar');
+Route::GET('/FiltrarEntregables/{id?}','Entregables@Filtrar');
+
+/*RUTA PARA HACER USO DE LOS CONTROLADORES DE TAREAS*/
+Route::resource('/Tarea','Tareas');
+Route::get('/Tarea','Tareas@index');
+Route::get('/preparactualizartareas/{id}','Tareas@preparactualizar');
+Route::GET('/FiltrarTareas/{id}','Tareas@FiltrarTareas');
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//Ruta de tipo recomendaciones
+//////////////////////////////////////////////////////////////////////////////////////////
+
+Route::resource('/Recomendacion','Recomendaciones');
+Route::get('/Recomendacion','Recomendaciones@index');
+Route::get('/prepararactualizarrecomendaciones/{id}','Recomendaciones@preparactualizar');
+Route::GET('/RecomendacionesMostrar','Recomendaciones@listarRecomendaciones');
+Route::get('/FiltrarRecomendaciones/{id}','Recomendaciones@FiltrarRecomendaciones');
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+//esta ruta esta fusionada con la ruta usuario
+Route::get('/MisRecomendaciones/{id?}', 'Usuarios@MisRecomendaciones');
+
+Route::resource('/AsignarRecomendacion', 'RecomendacionesUsuarios');
+Route::resource('/RecomendacionUsuario', 'RecomendacionesUsuarios');
+Route::get('/RecomendacionUsuario', 'RecomendacionesUsuarios@index');
+Route::get('/RecomendacionesUsuariosMostrar/{id}','RecomendacionesUsuarios@listarRecomendacionesUsuarios');
+Route::get('/CargarUsuarios', 'RecomendacionesUsuarios@cargarUsuarioRecomendacione');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//Ruta de tipo recomendaciones
+Route::resource('/TipoInforme','TipoInformes');
+Route::get('/TipoInforme', 'TipoInformes@index');
+Route::get('/TipoInformeCargar','TipoInformes@cargarTInforme');
+///////////////////////////////////////////////////////////////////////////////////////////
+Route::resource('/TipoUsuario','TipoUsuarios');
+Route::get('/TipoUsuario', 'TipoUsuarios@index');
+Route::get('/TipoUsuarioCargar', 'TipoUsuarios@cargarTipoUsuario');
+//////////////////////////////////////////;
+//Ruta de Usuarios
+Route::resource('/Usuario', 'Usuarios');
+Route::get('/Usuario', 'Usuarios@index');
+Route::get('/UsuarioMostrar','Usuarios@listausuario');
+Route::get('/eliminarusuario/{id?}','Usuarios@eliminarusuario');
+Route::get('/preparactualizarUsuario/{id}','Usuarios@preparactualizarusuario');
+//Route::get('/UsuarioCargar','Usuarios@cargarUsuario');
+Route::get('/general','Usuarios@vergeneral');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+//Ruta de tipo recomendaciones
+Route::resource('/Cargo','Cargos');
+Route::get('/Cargo', 'Cargos@index');
+Route::get('/CargosCargar','Cargos@cargarCargos');
+////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+//esta ruta esta fusionada con la ruta usuario
+Route::resource('/CargoUsuario', 'CargosUsuarios');
+Route::get('/CargoUsuario', 'CargosUsuarios@index');
+Route::get('/CargosUsuariosMostrar/{id}','CargosUsuarios@listarCargosUsuarios');
+//Route::get('/prepararCargosUsuarios/{id}','CargosUsuarios@ActualizarCargosUsuarios');
+/////////////////////////////////////////////////////////////////////////////////////////
+
+//Ruta de departamento
+Route::resource('/Departamento', 'Departamentos');
+Route::get('/Departamento', 'Departamentos@index');
+Route::get('/DepartamentoCargar', 'Departamentos@cargarDepartamento');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Route::resource('/CargoDepartamento', 'CargosDepartamentos');
+Route::get('/CargoDepartamento', 'CargosDepartamentos@index');
+Route::get('/CargosDepartamentosMostrar/{id}','CargosDepartamentos@listarCargosDepartamentos');
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Route::resource('/subtema', 'Subtemas');
+Route::get('/subtema', 'Subtemas@index');
+Route::get('/SubtemaMostrar','Subtemas@listasubtema');
+Route::get('/preparactualizarSubtema/{id}','Subtemas@preparactualizarsubtema');
+Route::get('/buscarSubtema/{descripcion?}','Subtemas@buscar_Subtema');
+Route::post('/Modificar_EstadoSubtema/{datos?}','Subtemas@modificarSubtemaEstado');
+Route::get('/datosSubtemas/{id}','Subtemas@datosSubtemas');
+Route::get('/filtarSubtema/{id}','Subtemas@filtrarSubtema');
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+//mis departamentos
+
+Route::get('/MisDepartamentos/{id?}','Usuarios@MisDepartamentos');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//Ruta de tipo recomendaciones
+Route::resource('/TipoRecomendacion','TipoRecomendaciones');
+Route::get('/TipoRecomendacion', 'TipoRecomendaciones@index');
+Route::get('/TipoRecomendacionCargar','TipoRecomendaciones@cargarTRecomendacion');
+
+//Ruta de estado
+Route::resource('/Estado', 'Estados');
+Route::get('/Estado','Estados@index');
+Route::get('/EstadoCargar','Estados@cargarEstado');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+/*RUTA PARA HACER USO DE LOS CONTROLADORES DE Avance*/
+Route::resource('/Avance', 'Avances');
+Route::get('/Avance', 'Avances@index');
+Route::get('/buscarAvance/{busqueda?}','Avances@buscar_Avances');
+/*PARA PREPARAR ACTUALIZACIÓN DATOS DEL Avance*/
+Route::get('/preparactualizar1/{id}','Avances@preparactualizar');
+/*PARA EXTRAER TODOS LOS USUARIOS*/
+Route::get('/AvanceMostrar','Avances@listadeAvances');
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Route::resource('/Actividad', 'Actividades');
+//Route::get('/Actividad', 'Actividades@index');
+Route::get('/buscarActividad/{descripcion?}/{fecha?}', 'Actividades@buscar_Actividad');
+Route::get('/buscarActividad2/{fecha?}', 'Actividades@buscar_Actividad2');
+/*PARA PREPARAR ACTUALIZACIÓN DATOS DEL Avance*/
+Route::get('/preparactualizarActividad/{id}','Actividades@preparactualizar');
+/*PARA EXTRAER TODOS LOS USUARIOS*/
+Route::get('/ActividadMostrar','Actividades@listarActividad');
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+Route::resource('/Informe', 'Informes');
+Route::get('/Informe', 'Informes@index');
+Route::get('/InformeMostrar','Informes@listarInforme');
+Route::get('/prepararInforme/{id}','Informes@actualizarInforme');
+Route::get('/buscarInforme/{tema?}/{fecha?}','Informes@buscar_Informe');
+Route::get('/buscarInformev2/{fecha?}', 'Informes@buscar_Informev2');
+Route::post('/ModificarEstado/{datos?}', 'Informes@modificarInforme');
+Route::get('/datosInforme/{id}','Informes@datosinformes');
+
+
