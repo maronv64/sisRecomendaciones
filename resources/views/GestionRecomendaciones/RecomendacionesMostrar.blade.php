@@ -8,14 +8,12 @@
      <th >%Cumplimiento</th>
      <th >Estado</th>
      <th >Subtema</th>
-     <th >Asingar Usuarios</th>
-     <th colspan="3">Aciones</th>          
+     <th >Estrategias </th>       
      </tr>
 
  </thead>
- <tbody id="tablaRecomendaciones">   
+ <tbody id="dgvRecomendaciones">   
  </tbody>
 </table>
-
 </div>
 

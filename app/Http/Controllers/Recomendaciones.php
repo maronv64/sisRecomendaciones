@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Subtema;
 use App\Usuario;
 use App\Recomendacion;
+use App\Estrategia;
 use Illuminate\Support\Facades\DB;
 
 class Recomendaciones extends Controller
@@ -132,4 +133,11 @@ class Recomendaciones extends Controller
     {   $recomendacionesall =Recomendacion::find($id);
         $recomendacionesall->delete();
     }
+
+    public function misEstrategias($id){
+        //$estrategiaall=Estrategia::with(['RecousuariosV2'])->find($estrategiaVar->id);
+        $consulta=Recomendacion::with(['estrategias'])->findOrFail($id);
+        return response()->json($consulta);                                            
+    }
+
 }

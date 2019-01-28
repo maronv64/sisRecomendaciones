@@ -9,9 +9,13 @@ class Recomendacion extends Model
     public $timestamps = false; 
     protected $table = 'recomendacion';
     protected $fillable = [
-        'descripcionRecomendacion','porcentajeCumplimiento','estadoRecomendacion','subtema_id'
+        'id','descripcionRecomendacion','porcentajeCumplimiento','estadoRecomendacio','subtema_id'
     ];
 
+
+    public function estrategias(){
+        return $this->hashMany('App\Estrategia','recomendacion_id','id');
+    }
 
     public function subTemas(){
         return $this->belongsTo('App\Subtema', 'subtema_id', 'id');
@@ -24,6 +28,12 @@ class Recomendacion extends Model
 
     public function  RecomendacionesUsuarios(){
         return $this->hasMany('App\RecomendacionUsuario','recomendacion_id','id');
-     }
-    
-      }
+    }
+
+   
+
+    // public function  Usuario(){
+    //     return $this->hasMany('App\Usuario','tipousuario_id', 'id');
+    // }
+
+}

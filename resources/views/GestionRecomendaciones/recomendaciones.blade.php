@@ -21,26 +21,7 @@
 
           
     <div class="container">
-            <div class="row">
-                    <div class="col-md-10">
-                        <div class="panel " >
-                        <legend class="text-center header">
-                            <span class=" text-center"><i class="fa fa-bar-chart"></i></span>
-                            <span> Recomendaciones</span> 
-                        </legend>
-                            <div class="panel-body"> 
-
-                                  @if(isset($edit))  
-                                    @include('GestionRecomendaciones.RecomendacionesModificar')
-                                @else
-                                    @include('GestionRecomendaciones.RecomendacionesCrear')
-                                @endif
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-            </div>
+           
 
 
 
@@ -69,8 +50,7 @@
    
   </div>
 </div>
-@include('GestionRecomendaciones.modalRecomendaciones')
-@include('GestionRecomendaciones.cuerpoRU')
+@include('GestionAsignacionDeEstrategias.estrategias_modal')
 @endsection
 
            <script>

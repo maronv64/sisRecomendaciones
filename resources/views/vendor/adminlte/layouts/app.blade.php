@@ -141,4 +141,4 @@ desired effect
 <script src="{{ asset('js/gestionEstrategia.js') }}"></script>
 <script src="{{ asset('js/gestionTareas.js') }}"></script>
 <script src="{{ asset('js/gestionEntregables.js') }}"></script>
-
+<script src="{{ asset('js/GestionRecomendacionAdmin.js') }}"></script> 

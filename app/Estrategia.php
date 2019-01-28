@@ -10,9 +10,13 @@ class Estrategia extends Model
     protected $primaryKey = 'id';
     public $timestamps=false;
     protected $fillable = [
-        'descripcionEstrategia','fecha','recomendacionesusuarios_id' 
+        'descripcionEstrategia','fechaInicio','fechaFin' ,'estado','porcentajeCumplimiento','recomendacion_id'
     ];
-     
+    
+    public function recomendacion(){
+        return $this->hasOne('App\Recomendacion','id','recomendacion_id');
+    }
+
     public function  Recousuarios(){
         return $this->belongsTo('App\RecomendacionUsuario','recomendacionesusuarios_id', 'id');
     }
@@ -24,5 +28,10 @@ class Estrategia extends Model
     public function  Tareas(){
         return $this->hasMany('App\Estrategia','id');
     }
+    
+
+    // public function TipoUsuariov2 (){
+    //     return $this->hasOne('App\TipoUsuario','id', 'tipousuario_id');
+    // }
      
 }
